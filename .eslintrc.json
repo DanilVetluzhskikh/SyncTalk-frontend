@@ -1,0 +1,77 @@
+{
+    "env": {
+        "browser": true,
+        "es2021": true,
+        "jest/globals": true
+    },
+    "extends": [
+        "eslint:recommended",
+        "plugin:react/recommended",
+        "plugin:@typescript-eslint/recommended",
+        "prettier",
+        "plugin:prettier/recommended",
+        "plugin:storybook/recommended"
+    ],
+    "overrides": [],
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+        "ecmaVersion": "latest",
+        "sourceType": "module"
+    },
+    "plugins": [
+        "react",
+        "@typescript-eslint",
+        "prettier",
+        "import",
+        "jest"
+    ],
+    "rules": {
+        "prettier/prettier": [
+            "error",
+            {
+                "endOfLine": "auto"
+            }
+        ],
+        "import/order": [
+            "error",
+            {
+                "newlines-between": "always",
+                "groups": [
+                    [
+                        "builtin",
+                        "external"
+                    ],
+                    "internal",
+                    [
+                        "parent",
+                        "sibling",
+                        "index"
+                    ]
+                ]
+            }
+        ],
+        "object-curly-spacing": [
+            "error",
+            "always"
+        ],
+        "array-bracket-spacing": [
+            "error",
+            "never"
+        ],
+        "quotes": [
+            "error",
+            "single"
+        ],
+        "semi": [
+            "error",
+            "always"
+        ],
+        "jest/no-disabled-tests": "warn",
+        "jest/no-focused-tests": "error",
+        "jest/no-identical-title": "error",
+        "jest/prefer-to-have-length": "warn",
+        "jest/valid-expect": "error",
+        "no-undef": "off",
+        "react/react-in-jsx-scope": "off"
+    }
+}

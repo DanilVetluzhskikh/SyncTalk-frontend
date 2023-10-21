@@ -1,0 +1,18 @@
+{
+    "printWidth": 80,
+    "tabWidth": 2,
+    "useTabs": false,
+    "semi": true,
+    "singleQuote": true,
+    "trailingComma": "all",
+    "bracketSpacing": true,
+    "jsxBracketSameLine": false,
+    "arrowParens": "avoid",
+    "objectCurlyNewline": {
+      "ObjectExpression": { "multiline": true, "minProperties": 4 },
+      "ObjectPattern": { "multiline": true, "minProperties": 4 },
+      "ImportDeclaration": "never",
+      "ExportDeclaration": { "multiline": true, "minProperties": 4 }
+    },
+    "arrayElementNewline": "consistent"
+  }
