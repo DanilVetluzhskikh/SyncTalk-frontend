@@ -1,0 +1,57 @@
+.bg {
+    height: 1000px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    width: 100%;
+    z-index: -1;
+    filter: grayscale(.3)
+}
+
+.main {
+    .wrapper {
+        margin: 0 auto;
+        width: 1400px;
+
+        .blocks {
+            margin-top: 150px;
+            display: flex;
+            flex-direction: column;
+            gap: 150px;
+        }
+    }
+}
+
+.blockTitle {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-end;
+    height: calc(1000px - 100px);
+    margin-left: 200px;
+    position: relative;
+
+    .absolute {
+        position: absolute;
+        right: -500px;
+        top: 120px;
+
+        .title {
+            font-size: 48px;
+            line-height: 54px;
+            font-weight: bold;
+            color: #ffffff;
+            text-align: center;
+            width: 900px;
+        }
+    
+        .paragraph {
+            font-size: 32px;
+            line-height: 40px;
+            font-weight: normal;
+            width: 900px;
+            color: #ffffff;
+        }
+    }
+}

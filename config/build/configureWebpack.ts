@@ -20,7 +20,7 @@ export function configureWebpack(options: BuildOptions): webpack.Configuration {
     },
     plugins: buildPlugins(options),
     module: {
-      rules: buildLoaders(),
+      rules: buildLoaders(options),
     },
     resolve: buildResolvers(options),
     devtool: isDev ? 'eval-cheap-module-source-map' : undefined,
