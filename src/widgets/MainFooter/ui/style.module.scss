@@ -1,0 +1,32 @@
+.footer {
+    height: 150px;
+    width: 100%;
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .footerContent {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 1400px;
+        border-top: 2px solid white;
+        padding-top: 10px;
+
+        .logoInfo {
+            display: flex;
+        }
+
+        .title {
+            margin-top: 12px;
+            margin-right: 10px;
+            color: white;
+        }
+        
+        .img {
+            height: 50px;
+            width: 50px;
+        }
+    }
+}

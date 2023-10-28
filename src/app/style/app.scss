@@ -4,8 +4,34 @@
     box-sizing: border-box;
 }
 
+::-webkit-scrollbar {
+    width: 5px;
+}
+  
+::-webkit-scrollbar-track {
+    background: white;
+}
+  
+::-webkit-scrollbar-thumb {
+    background: #1677ff;
+    border-radius: 5px;
+}
+  
+::-webkit-scrollbar-thumb:hover {
+    background: rgb(44, 44, 236)
+}
+  
+
+* {
+    scrollbar-width: thin;
+    scrollbar-color: #1677ff #f1f1f1;
+}
+
 body {
     background: #262626;
+    overflow-x: hidden;
+    width: 100% !important;
+    overflow-y: auto !important;
 }
 
 button {

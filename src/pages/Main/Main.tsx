@@ -6,6 +6,7 @@ import bg from '@/app/assets/background-main.jpg';
 import { Navbar } from '@/widgets/Navbar';
 import { ImgBlock } from '@/entities/ImgBlock';
 import { mainPageBlocks } from '@/shared/mocks/arrays';
+import { MainFooter } from '@/widgets/MainFooter';
 
 const { Title, Paragraph } = Typography;
 
@@ -36,6 +37,7 @@ const Main = () => {
           ))}
         </div>
       </div>
+      <MainFooter />
     </div>
   );
 };

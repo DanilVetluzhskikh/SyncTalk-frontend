@@ -10,5 +10,6 @@ export function buildDevServer(
     historyApiFallback: true,
     hot: true,
     port: options.port,
+    host: '0.0.0.0',
   };
 }
