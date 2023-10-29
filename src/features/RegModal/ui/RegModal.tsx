@@ -2,6 +2,18 @@ import { Input, Modal } from 'antd';
 import { ChangeEvent, useState } from 'react';
 
 import cls from './style.module.scss';
+import {
+  getRegisterEmail,
+  getRegisterErrors,
+  getRegisterIsLoading,
+  getRegisterPassword,
+  getRegisterRepeatPassword,
+  setRegisterEmail,
+  setRegisterErrors,
+  setRegisterPassword,
+  setRegisterRepeatPassword,
+} from '../model/slice/registerSlice';
+import { register } from '../model/services/register';
 
 import {
   validateEmail,
@@ -9,6 +21,7 @@ import {
   validateNotEmpty,
 } from '@/shared/utils/validators';
 import { Errors } from '@/entities/Errors';
+import { useAppDispatch, useAppSelector } from '@/app/hooks/redux';
 
 interface RegModalProps {
   isOpen: boolean;
@@ -20,35 +33,49 @@ export const RegModal = (props: RegModalProps) => {
 
   const [passwordVisible, setPasswordVisible] = useState<boolean>(false);
   const [passwordRepVisible, setPasswordRepVisible] = useState<boolean>(false);
-  const [email, setEmail] = useState<string>('');
-  const [password, setPassword] = useState<string>('');
-  const [repeatPassword, setRepeatPassword] = useState<string>('');
-  const [errors, setErrors] = useState<string[]>([]);
 
-  const handleLogin = () => {
-    setErrors([
+  const email = useAppSelector(getRegisterEmail);
+  const password = useAppSelector(getRegisterPassword);
+  const repeatPassword = useAppSelector(getRegisterRepeatPassword);
+  const errors = useAppSelector(getRegisterErrors);
+  const isLoading = useAppSelector(getRegisterIsLoading);
+  const dispatch = useAppDispatch();
+
+  const handleLogin = async () => {
+    const newErrors = [
       validateEmail(email),
       validateNotEmpty(email, 'почты'),
       validateNotEmpty(password, 'пароля'),
       validateNotEmpty(repeatPassword, 'подтверждение пароля'),
       validateFieldsMatch(repeatPassword, password),
-    ]);
+    ];
 
-    if (!errors.filter(err => err).length) {
-      console.log(email, password, repeatPassword);
+    dispatch(setRegisterErrors(newErrors));
+
+    if (!newErrors.filter(err => err).length) {
+      const result = await dispatch(
+        register({
+          email,
+          password,
+        }),
+      );
+
+      if (result.meta.requestStatus === 'fulfilled') {
+        // window.location.reload();
+      }
     }
   };
 
   const handleChangeEmail = (e: ChangeEvent<HTMLInputElement>) => {
-    setEmail(e.target.value);
+    dispatch(setRegisterEmail(e.target.value));
   };
 
   const handleChangePassword = (e: ChangeEvent<HTMLInputElement>) => {
-    setPassword(e.target.value);
+    dispatch(setRegisterPassword(e.target.value));
   };
 
   const handleChangeRepeatPassword = (e: ChangeEvent<HTMLInputElement>) => {
-    setRepeatPassword(e.target.value);
+    dispatch(setRegisterRepeatPassword(e.target.value));
   };
 
   const isErrorEmail = errors[0]?.length || errors[1]?.length;
@@ -66,6 +93,12 @@ export const RegModal = (props: RegModalProps) => {
       onOk={handleLogin}
       keyboard
       centered
+      cancelButtonProps={{
+        disabled: isLoading,
+      }}
+      okButtonProps={{
+        disabled: isLoading,
+      }}
     >
       <div className={cls.content}>
         <Input

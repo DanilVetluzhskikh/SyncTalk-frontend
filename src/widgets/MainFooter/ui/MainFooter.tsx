@@ -16,8 +16,12 @@ export const MainFooter = () => {
             SyncTalk
           </Title>
         </div>
-        <Button type="primary" size="large">
-          Зарегистрироваться
+        <Button
+          type="primary"
+          size="large"
+          onClick={() => window.scrollBy(0, -20000)}
+        >
+          Наверх
         </Button>
       </div>
     </div>

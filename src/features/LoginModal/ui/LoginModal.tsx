@@ -2,9 +2,20 @@ import { Input, Modal } from 'antd';
 import { ChangeEvent, useState } from 'react';
 
 import cls from './style.module.scss';
+import {
+  getLoginEmail,
+  getLoginErrors,
+  getLoginIsLoading,
+  getLoginPassword,
+  setLoginEmail,
+  setLoginErrors,
+  setLoginPassword,
+} from '../model/slice/loginSlice';
+import { loginByEmail } from '../model/services/loginByEmail';
 
 import { validateEmail, validateNotEmpty } from '@/shared/utils/validators';
 import { Errors } from '@/entities/Errors';
+import { useAppDispatch, useAppSelector } from '@/app/hooks/redux';
 
 interface LoginModalProps {
   isOpen: boolean;
@@ -15,28 +26,42 @@ export const LoginModal = (props: LoginModalProps) => {
   const { isOpen, handleClose } = props;
 
   const [passwordVisible, setPasswordVisible] = useState<boolean>(false);
-  const [email, setEmail] = useState<string>('');
-  const [password, setPassword] = useState<string>('');
-  const [errors, setErrors] = useState<string[]>([]);
 
-  const handleLogin = () => {
-    setErrors([
-      validateEmail(email),
-      validateNotEmpty(email, 'почты'),
-      validateNotEmpty(password, 'пароля'),
-    ]);
-
-    if (!errors.filter(err => err).length) {
-      console.log(email, password);
-    }
-  };
+  const email = useAppSelector(getLoginEmail);
+  const password = useAppSelector(getLoginPassword);
+  const errors = useAppSelector(getLoginErrors);
+  const isLoading = useAppSelector(getLoginIsLoading);
+  const dispatch = useAppDispatch();
 
   const handleChangeEmail = (e: ChangeEvent<HTMLInputElement>) => {
-    setEmail(e.target.value);
+    dispatch(setLoginEmail(e.target.value));
   };
 
   const handleChangePassword = (e: ChangeEvent<HTMLInputElement>) => {
-    setPassword(e.target.value);
+    dispatch(setLoginPassword(e.target.value));
+  };
+
+  const handleLogin = async () => {
+    const newErrors = [
+      validateEmail(email),
+      validateNotEmpty(email, 'почты'),
+      validateNotEmpty(password, 'пароля'),
+    ];
+
+    dispatch(setLoginErrors(newErrors));
+
+    if (!newErrors.filter(el => el).length) {
+      const result = await dispatch(
+        loginByEmail({
+          email,
+          password,
+        }),
+      );
+
+      if (result.meta.requestStatus === 'fulfilled') {
+        window.location.reload();
+      }
+    }
   };
 
   const isErrorEmail = errors[0]?.length || errors[1]?.length;
@@ -52,6 +77,12 @@ export const LoginModal = (props: LoginModalProps) => {
       onOk={handleLogin}
       keyboard
       centered
+      cancelButtonProps={{
+        disabled: isLoading,
+      }}
+      okButtonProps={{
+        disabled: isLoading,
+      }}
     >
       <div className={cls.content}>
         <Input

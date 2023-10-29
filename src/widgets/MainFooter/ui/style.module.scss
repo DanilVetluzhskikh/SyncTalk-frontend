@@ -27,6 +27,18 @@
         .img {
             height: 50px;
             width: 50px;
+    
+            @media (max-width: 1000px) {
+                display: none;
+            }
+        }
+
+        @media (max-width: 1500px) {
+            width: var(--width-laptop);
+        }
+
+        @media (max-width: 1000px) {
+            width: var(--width-phone);
         }
     }
 }

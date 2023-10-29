@@ -9,22 +9,51 @@
         align-items: center;
         gap: 10px;
         height: 50px;
+
+        @media (max-width: 1000px) {
+            height: 30px;
+        }
+
+        > button {
+            @media (max-width: 1000px) {
+                width: 130px;
+                height: 30px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+        }
     }
 
     .logoContainer {
         display: flex;
         gap: 10px;
         height: 50px;
+        
+        @media (max-width: 1000px) {
+            height: 30px;
+        }
 
         .logo {
             width: 50px;
             height: 50px;
+
+            @media (max-width: 1000px) {
+                display: none;
+            }
         }
     
         .title {
             color: white;
             font-weight: 900;
             height: auto;
+
+            @media (max-width: 1000px) {
+                font-size: 16px;
+                line-height: 30px;
+                text-stroke: 1px #000;
+                -webkit-text-stroke: 1px #000;
+            }
         }
     }
 }
