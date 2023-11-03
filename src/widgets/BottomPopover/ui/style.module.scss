@@ -1,0 +1,14 @@
+.menuContent {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.title {
+    text-align: center;
+}
+
+.btn {
+    border-radius: 100px !important;
+    font-size: 22px;
+}

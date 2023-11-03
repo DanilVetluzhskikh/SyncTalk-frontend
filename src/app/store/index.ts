@@ -2,6 +2,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 import { userReducer } from './slices/userSlice';
+import { authReducer } from './slices/authSlice';
 
 import { loginReducer } from '@/features/LoginModal';
 import { ThunkExtraArg } from '@/shared/types/redux';
@@ -24,6 +25,7 @@ export const store = configureStore({
     user: userReducer,
     login: loginReducer,
     register: registerReducer,
+    auth: authReducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({

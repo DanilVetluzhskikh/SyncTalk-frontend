@@ -16,8 +16,8 @@
         border-radius: 20px;
 
         @media (max-width: 1500px) {
-            width: 400px;
-            height: 400px;
+            width: 350px;
+            height: 350px;
         }
     }
 
@@ -29,7 +29,7 @@
         }
 
         @media (max-width: 1000px) {
-            width: 400px;
+            width: 350px;
             text-align: start;
             display: flex;
             flex-direction: column;

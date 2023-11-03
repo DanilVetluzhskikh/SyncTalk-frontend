@@ -61,7 +61,7 @@ export const RegModal = (props: RegModalProps) => {
       );
 
       if (result.meta.requestStatus === 'fulfilled') {
-        // window.location.reload();
+        window.location.reload();
       }
     }
   };
@@ -88,7 +88,7 @@ export const RegModal = (props: RegModalProps) => {
       title="Авторизация"
       open={isOpen}
       onCancel={handleClose}
-      okText="Войти"
+      okText="Зарегистрироваться"
       cancelText="Закрыть"
       onOk={handleLogin}
       keyboard

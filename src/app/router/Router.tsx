@@ -4,24 +4,20 @@ import { Routes, Route } from 'react-router-dom';
 import { adminRoutes, privateRoutes, publicRoutes } from './routes/routes';
 
 import { NotFound } from '@/pages';
+import { renderRoutes } from '@/shared/utils/jsx';
 
-export const Router = () => {
+interface RouterProps {
+  isAuth: boolean;
+}
+
+export const Router = ({ isAuth }: RouterProps) => {
   const isAdmin = false;
 
   return (
-    <Suspense fallback="">
+    <Suspense fallback={<div>Loading...</div>}>
       <Routes>
-        {localStorage.getItem('123')
-          ? Object.values(privateRoutes).map(({ path, Element }) => (
-              <Route key={path} path={path} element={<Element />} />
-            ))
-          : Object.values(publicRoutes).map(({ path, Element }) => (
-              <Route key={path} path={path} element={<Element />} />
-            ))}
-        {isAdmin &&
-          Object.values(adminRoutes).map(({ path, Element }) => (
-            <Route key={path} path={path} element={<Element />} />
-          ))}
+        {isAuth ? renderRoutes(privateRoutes) : renderRoutes(publicRoutes)}
+        {isAdmin && renderRoutes(adminRoutes)}
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Suspense>

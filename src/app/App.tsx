@@ -1,18 +1,48 @@
 import React, { useEffect } from 'react';
+import { Spin, message } from 'antd';
 
 import { Router } from './router/Router';
+import { useAppDispatch, useAppSelector } from './hooks/redux';
+import {
+  selectAuthError,
+  selectAuthILoading,
+  selectAuthIsAuth,
+} from './store/slices/authSlice';
+import { userAuthService } from './services/userAuthService';
 
 import './style/app.scss';
-import { TOKEN } from '@/shared/mocks/api';
 
 export const App: React.FC = () => {
-  useEffect(() => {
-    // TODO: сделать проверку на авторизацию по токену
-    // если токен актуальный то вернуть данные об авторизованном пользователе
-    // и перенести на приватную Main страницу иначе удалять токен и отображать
-    // публичную страницу
-    console.log(localStorage.getItem(TOKEN));
-  }, []);
+  const isLoading = useAppSelector(selectAuthILoading);
+  const error = useAppSelector(selectAuthError);
+  const isAuth = useAppSelector(selectAuthIsAuth);
 
-  return <Router />;
+  const [messageApi, contextHolder] = message.useMessage();
+
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(userAuthService());
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (error.length) {
+      messageApi.error(error);
+    }
+  }, [error]);
+
+  if (isLoading) {
+    return (
+      <div className="loading">
+        <Spin size="large" />
+      </div>
+    );
+  }
+
+  return (
+    <>
+      {contextHolder}
+      <Router isAuth={isAuth} />
+    </>
+  );
 };

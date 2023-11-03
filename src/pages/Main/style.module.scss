@@ -30,6 +30,10 @@
             @media (max-width: 1000px) {
                 gap: 50px;
             }
+
+            @media (max-width: 1000px) {
+                margin-top: 0px;
+            }
         }
 
         @media (max-width: 1500px) {
@@ -76,7 +80,7 @@
             }
 
             @media (max-width: 1000px) {
-                font-size: 28px;
+                font-size: 24px;
                 text-stroke: 1px #000;
                 -webkit-text-stroke: 1px #000;
                 text-align: center;
@@ -98,7 +102,8 @@
             }
 
             @media (max-width: 1000px) {
-                font-size: 24px;
+                width: 350px;
+                font-size: 20px;
                 font-weight: bold;
                 text-stroke: 1px #000;
                 -webkit-text-stroke: 1px #000;

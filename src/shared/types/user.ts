@@ -1,8 +1,9 @@
 export type UserType = {
   email: string;
+  username: string;
 };
 
 export type ProfileType = {
-  name: string;
   status: string;
+  avatarUrl: string | null;
 };
