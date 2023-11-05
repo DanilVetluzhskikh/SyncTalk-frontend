@@ -1,0 +1,21 @@
+.users {
+    height: 750px;
+    display: flex;
+    overflow-y: auto;
+    flex-direction: column;
+    padding: 20px;
+    gap: 20px;
+}
+
+.descEmpty {
+    color: #fff;
+    font-size: 24px;
+}
+
+.loader {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 300px;
+}
+

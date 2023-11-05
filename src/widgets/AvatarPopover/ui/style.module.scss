@@ -1,0 +1,33 @@
+.contentPopover {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.status {
+    cursor: help;
+}
+
+.statuses {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.btnStatus {
+    display: flex;
+}
+
+.contentStatus {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 20px;
+    color: #fff;
+    font-size: 15px;
+    transition: transform 75ms ease-in;
+
+    &:hover {
+        transform: scale(1.05);
+    }
+}

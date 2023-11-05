@@ -1,0 +1,53 @@
+.userBlock {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+}
+
+.userInfo {
+    display: flex;
+    gap: 20px;
+}
+
+.text {
+    font-size: 20px;
+    color: #fff;
+}
+
+.block {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 300px;
+}
+
+.edit {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.avatar {
+    width: 150px;
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    svg {
+        font-size: 100px;
+    }
+}
+
+.inputUrl {
+    font-size: 16px;
+    margin-top: 15px;
+
+    &:disabled {
+        color: #fff;
+    }
+
+    &::placeholder {
+        color: #fff;
+    }
+}

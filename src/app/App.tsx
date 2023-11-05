@@ -27,7 +27,7 @@ export const App: React.FC = () => {
 
   useEffect(() => {
     if (error.length) {
-      messageApi.error(error);
+      messageApi.info(error);
     }
   }, [error]);
 

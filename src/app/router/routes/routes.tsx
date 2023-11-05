@@ -1,4 +1,4 @@
-import { Main, PrivateMain } from '@/pages';
+import { Main, PrivateMain, Profile, Users } from '@/pages';
 import { SideBarLayout } from '@/shared/layouts/SideBarLayout/SideBarLayout';
 import {
   AdminRouterPaths,
@@ -18,6 +18,16 @@ export const privateRoutes: Record<PrivateRouterPaths, RouteItem> = {
   [PrivateRouterPaths.MAIN]: {
     path: PrivateRouterPaths.MAIN,
     Element: PrivateMain,
+    Layout: SideBarLayout,
+  },
+  [PrivateRouterPaths.PROFILE]: {
+    path: PrivateRouterPaths.PROFILE,
+    Element: Profile,
+    Layout: SideBarLayout,
+  },
+  [PrivateRouterPaths.USERS]: {
+    path: PrivateRouterPaths.USERS,
+    Element: Users,
     Layout: SideBarLayout,
   },
 };

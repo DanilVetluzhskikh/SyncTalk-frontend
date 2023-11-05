@@ -1,7 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import { ThunkConfig } from '@/shared/types/redux';
-import { TOKEN } from '@/shared/mocks/api';
 
 interface LoginByEmailProps {
   email: string;
@@ -27,8 +26,6 @@ export const loginByEmail = createAsyncThunk<
     if (response.data.status === 400) {
       throw new Error(response.data.message);
     }
-
-    localStorage.setItem(TOKEN, response.data.token);
 
     return response.data;
   } catch (e) {

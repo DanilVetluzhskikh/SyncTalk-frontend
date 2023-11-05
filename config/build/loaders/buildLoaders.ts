@@ -13,6 +13,7 @@ export function buildLoaders(options: BuildOptions): ModuleOptions['rules'] {
         loader: 'babel-loader',
         options: {
           presets: ['@babel/preset-env', '@babel/preset-react'],
+          plugins: [['@babel/plugin-transform-runtime', { regenerator: true }]],
         },
       },
     },
@@ -44,7 +45,7 @@ export function buildLoaders(options: BuildOptions): ModuleOptions['rules'] {
       ],
     },
     {
-      test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+      test: /\.(woff(2)?|ttf|eot|svg|mp3)(\?v=\d+\.\d+\.\d+)?$/,
       use: [
         {
           loader: 'file-loader',

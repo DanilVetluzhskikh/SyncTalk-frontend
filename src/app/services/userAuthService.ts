@@ -16,17 +16,17 @@ export const userAuthService = createAsyncThunk<
   GetData,
   undefined,
   ThunkConfig<string>
->('user/auth', async (authData, thunkApi) => {
+>('user/auth', async (_, thunkApi) => {
   const { rejectWithValue, extra, dispatch } = thunkApi;
 
   try {
     await sleep(150);
-    const response = await extra.api.post<GetData>('user/auth', authData);
+    const response = await extra.api.post<GetData>('user/auth');
 
     const {
       username,
       email,
-      profile: { avatarUrl, status },
+      profile: { avatarURL, status },
     } = response.data;
 
     dispatch(
@@ -38,15 +38,13 @@ export const userAuthService = createAsyncThunk<
 
     dispatch(
       changeProfile({
-        avatarUrl,
+        avatarURL,
         status,
       }),
     );
 
     return response.data;
   } catch (e) {
-    return rejectWithValue(
-      e?.response?.data?.message?.message ?? 'Неизвестная ошибка',
-    );
+    return rejectWithValue(e?.response?.data?.message?.message ?? '');
   }
 });

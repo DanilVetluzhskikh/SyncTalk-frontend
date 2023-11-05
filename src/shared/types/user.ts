@@ -5,5 +5,5 @@ export type UserType = {
 
 export type ProfileType = {
   status: string;
-  avatarUrl: string | null;
+  avatarURL: string | null;
 };

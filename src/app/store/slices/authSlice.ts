@@ -3,7 +3,6 @@ import { createSlice } from '@reduxjs/toolkit';
 import { RootState } from '..';
 
 import { userAuthService } from '@/app/services/userAuthService';
-import { TOKEN } from '@/shared/mocks/api';
 
 export interface authSchema {
   isLoading: boolean;
@@ -23,7 +22,6 @@ export const authSlice = createSlice({
   reducers: {
     authLogout: state => {
       state.isAuth = false;
-      localStorage.removeItem(TOKEN);
     },
   },
   extraReducers: builder => {
@@ -37,8 +35,6 @@ export const authSlice = createSlice({
         state.error = action.payload;
         state.isLoading = false;
         state.isAuth = false;
-
-        localStorage.removeItem(TOKEN);
       })
       .addCase(userAuthService.fulfilled, state => {
         state.isAuth = true;

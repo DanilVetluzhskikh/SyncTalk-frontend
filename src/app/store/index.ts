@@ -1,20 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit';
-import axios from 'axios';
 
 import { userReducer } from './slices/userSlice';
 import { authReducer } from './slices/authSlice';
+import { $axios } from '../api/api';
 
 import { loginReducer } from '@/features/LoginModal';
-import { ThunkExtraArg } from '@/shared/types/redux';
-import { TOKEN, url } from '@/shared/mocks/api';
 import { registerReducer } from '@/features/RegModal';
-
-export const $axios = axios.create({
-  baseURL: url,
-  headers: {
-    Authorization: `Bearer ${localStorage.getItem(TOKEN)}`,
-  },
-});
+import { ThunkExtraArg } from '@/shared/types/redux';
+import { usersReducer } from '@/features/UsersList';
 
 const extraArg: ThunkExtraArg = {
   api: $axios,
@@ -26,6 +19,7 @@ export const store = configureStore({
     login: loginReducer,
     register: registerReducer,
     auth: authReducer,
+    users: usersReducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({

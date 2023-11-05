@@ -4,7 +4,7 @@ import { useState } from 'react';
 import cls from './style.module.scss';
 
 import { useAppDispatch } from '@/app/hooks/redux';
-import { authLogout } from '@/app/store/slices/authSlice';
+import { userLogout } from '@/app/services/userLogout';
 
 export const BottomPopover = () => {
   const [hovered, setHovered] = useState(false);
@@ -16,7 +16,7 @@ export const BottomPopover = () => {
   };
 
   const handleLogout = () => {
-    dispatch(authLogout());
+    dispatch(userLogout());
   };
 
   const renderContent = () => (
