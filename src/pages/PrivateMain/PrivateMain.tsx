@@ -1,14 +1,7 @@
-import { useAppSelector } from '@/app/hooks/redux';
-import { selectUserInfo } from '@/app/store/slices/userSlice';
+import { Messenger } from '@/widgets/Messenger';
 
 const PrivateMain = () => {
-  const { user, profile } = useAppSelector(selectUserInfo);
-
-  return (
-    <div>
-      {user.email} - {profile.status}
-    </div>
-  );
+  return <Messenger />;
 };
 
 export default PrivateMain;

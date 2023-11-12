@@ -33,3 +33,10 @@ export enum UserSubscribeAction {
   DECLINE_MY_FRIEND_REQUEST = 'DECLINE_MY_FRIEND_REQUEST',
   DELETE_FRIEND = 'DELETE_FRIEND',
 }
+
+export type Friend = {
+  username: string;
+  avatarURL: string;
+  id: number;
+  status: string;
+};

@@ -1,15 +1,14 @@
 import { Button } from 'antd';
 
-import {
-  requestFriendService,
-  acceptFriendService,
-  declineFriendService,
-  declineMyRequestService,
-  deleteFriendService,
-} from '../../model/services';
 import cls from '../style.module.scss';
+import {
+  actionsFriend,
+  getButtonConfig,
+  selectButtonProps,
+} from '../../utils/actions';
 
 import { useAppDispatch } from '@/app/hooks/redux';
+import { UserSubscribeAction } from '@/shared/types/shared';
 
 interface ActionButtonProps {
   id: number;
@@ -24,74 +23,41 @@ export const ActionButton = (props: ActionButtonProps) => {
 
   const dispatch = useAppDispatch();
 
-  const handleRequestFriend = () =>
-    dispatch(requestFriendService({ friendId: id }));
-  const handleAcceptFriend = () =>
-    dispatch(acceptFriendService({ friendId: id }));
-  const handleDeclineFriend = () =>
-    dispatch(declineFriendService({ friendId: id }));
-  const handleDeclineMyRequest = () =>
-    dispatch(declineMyRequestService({ friendId: id }));
-  const handleDeleteFriend = () =>
-    dispatch(deleteFriendService({ friendId: id }));
+  const handleAction = (type: UserSubscribeAction) => {
+    const action = actionsFriend[type];
 
-  const renderActionButton = () => {
-    if (isFriend) {
-      return (
-        <Button
-          onClick={handleDeleteFriend}
-          loading={isLoading}
-          className={cls.actionBtn}
-          type="primary"
-        >
-          Удалить из друзей
-        </Button>
-      );
-    } else if (requestFriend) {
-      return (
-        <Button
-          onClick={handleDeclineMyRequest}
-          loading={isLoading}
-          className={cls.actionBtn}
-          type="primary"
-        >
-          Отозвать заявку
-        </Button>
-      );
-    } else if (isSentRequest) {
-      return (
-        <div className={cls.actions}>
-          <Button
-            onClick={handleAcceptFriend}
-            loading={isLoading}
-            className={cls.actionBtn}
-            type="primary"
-          >
-            Принять заявку
-          </Button>
-          <Button
-            onClick={handleDeclineFriend}
-            loading={isLoading}
-            className={cls.actionBtn}
-            type="primary"
-          >
-            Отклонить заявку
-          </Button>
-        </div>
-      );
-    } else {
-      return (
-        <Button
-          onClick={handleRequestFriend}
-          loading={isLoading}
-          className={cls.actionBtn}
-          type="primary"
-        >
-          Отправить заявку в друзья
-        </Button>
-      );
+    if (action) {
+      dispatch(action({ friendId: id }));
     }
   };
 
-  return renderActionButton();
+  const config = getButtonConfig(handleAction);
+  const { primary, secondary } = selectButtonProps(config, {
+    isFriend,
+    requestFriend,
+    isSentRequest,
+  });
+
+  return (
+    <div className={cls.actions}>
+      <Button
+        onClick={primary.action}
+        loading={isLoading}
+        className={cls.actionBtn}
+        type="primary"
+      >
+        {primary.text}
+      </Button>
+      {secondary && (
+        <Button
+          onClick={secondary.action}
+          loading={isLoading}
+          className={cls.actionBtn}
+          type="primary"
+        >
+          {secondary.text}
+        </Button>
+      )}
+    </div>
+  );
 };

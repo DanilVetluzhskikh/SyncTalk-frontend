@@ -1,17 +1,15 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
+import { GetDataAction } from '../schema/userCardSchema';
+
 import { ThunkConfig } from '@/shared/types/redux';
 import { declineFriend } from '@/features/UsersList';
-
-interface GetData {
-  friendId: number;
-}
 
 interface ReturnData {}
 
 export const declineMyRequestService = createAsyncThunk<
   ReturnData,
-  GetData,
+  GetDataAction,
   ThunkConfig<string>
 >('user/declineMyRequestService', async (dataValues, thunkApi) => {
   const { rejectWithValue, extra, dispatch } = thunkApi;

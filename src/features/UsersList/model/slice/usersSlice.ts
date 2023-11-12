@@ -6,7 +6,7 @@ import { getUsersService } from '../services/getUsersService';
 import { RootState } from '@/app/store';
 
 const initialState: UsersSchema = {
-  isLoading: true,
+  isLoading: false,
   error: '',
   users: [],
   totalPages: 1,
