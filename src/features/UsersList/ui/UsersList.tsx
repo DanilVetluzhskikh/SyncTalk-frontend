@@ -1,44 +1,58 @@
-import { Empty, Spin } from 'antd';
-import { useEffect } from 'react';
+import { Button, Empty, Spin } from 'antd';
 
-import {
-  getUsersError,
-  getUsersInfo,
-  getUsersIsLoading,
-} from '../model/slice/usersSlice';
 import cls from './style.module.scss';
-import { getUsersService } from '../model/services/getUsersService';
+import { useUsersData } from '../hooks/useUsersData';
 
-import { useAppDispatch, useAppSelector } from '@/app/hooks/redux';
 import { UserCard } from '@/entities/UserCard';
 
 interface UsersListProps {
   search?: string;
+  page: number;
+  setPage: React.Dispatch<React.SetStateAction<number>>;
 }
 
-export const UsersList = (props: UsersListProps) => {
-  const { search } = props;
+export const UsersList = ({ search, page, setPage }: UsersListProps) => {
+  const { users, error, isLoading, totalPages } = useUsersData(search, page);
 
-  const dispatch = useAppDispatch();
-  const users = useAppSelector(getUsersInfo);
-  const error = useAppSelector(getUsersError);
-  const isLoading = useAppSelector(getUsersIsLoading);
+  const handleLoadNextPage = () => {
+    if (page < totalPages) {
+      setPage(prev => prev + 1);
+    }
+  };
 
-  useEffect(() => {
-    dispatch(getUsersService({ search }));
-  }, [dispatch, search]);
+  const renderUsers = () => {
+    if (users.length) {
+      return users.map(user => <UserCard key={user.id} {...user} />);
+    }
 
-  if (error) return <div className={cls.error}>{error}</div>;
-  if (isLoading) return <Spin size="large" className={cls.loader} />;
-
-  return (
-    <div className={cls.users}>
-      {users.length ? (
-        users.map(user => <UserCard key={user.id} user={user} />)
-      ) : (
+    if (!isLoading) {
+      return (
         <Empty
           description={<span className={cls.descEmpty}>No users found</span>}
         />
+      );
+    }
+
+    return null;
+  };
+
+  if (error && !isLoading) {
+    return <div className={cls.error}>{error}</div>;
+  }
+
+  const isCanLoadMore = page < totalPages && !isLoading;
+
+  return (
+    <div className={cls.users}>
+      {renderUsers()}
+      {isCanLoadMore ? (
+        <Button type="primary" onClick={handleLoadNextPage}>
+          Загрузить еще
+        </Button>
+      ) : (
+        <div className={cls.loaderContainer}>
+          {isLoading && <Spin size="large" />}
+        </div>
       )}
     </div>
   );

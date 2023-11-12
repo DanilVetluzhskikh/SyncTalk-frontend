@@ -1,7 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-import { authLogout } from '../store/slices/authSlice';
-
 import { ThunkConfig } from '@/shared/types/redux';
 
 export const userLogout = createAsyncThunk<
@@ -9,13 +7,10 @@ export const userLogout = createAsyncThunk<
   undefined,
   ThunkConfig<string>
 >('auth/logout', async (_, thunkApi) => {
-  const { rejectWithValue, extra, dispatch } = thunkApi;
+  const { rejectWithValue, extra } = thunkApi;
 
   try {
     const response = await extra.api.post<string>('auth/logout');
-
-    dispatch(authLogout);
-    window.location.reload();
 
     return response.data;
   } catch (e) {

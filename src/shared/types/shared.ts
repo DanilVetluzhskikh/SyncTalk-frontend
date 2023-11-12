@@ -23,4 +23,13 @@ export type OtherUserType = {
   avatarURL: string;
   id: number;
   requestFriend: boolean;
+  isSentRequest: boolean;
 };
+
+export enum UserSubscribeAction {
+  REQUEST_FRIEND = 'REQUEST_FRIEND',
+  ACCEPT_FRIEND = 'ACCEPT_FRIEND',
+  DECLINE_FRIEND = 'DECLINE_FRIEND',
+  DECLINE_MY_FRIEND_REQUEST = 'DECLINE_MY_FRIEND_REQUEST',
+  DELETE_FRIEND = 'DELETE_FRIEND',
+}

@@ -14,14 +14,16 @@ interface SpeechSearchListProps {
   children: ReactNode;
   onSearch: (value: string) => void;
   defaultValue: string;
+  isLoading: boolean;
 }
 
-const defaultNumberActiveMicro = 2500;
+const defaultNumberActiveMicro = 2000;
 
 export const SpeechSearchList = ({
   children,
   onSearch,
   defaultValue,
+  isLoading,
 }: SpeechSearchListProps) => {
   const [search, setSearch] = useState(defaultValue);
   const soundRef = useRef(new Audio(onMp3));
@@ -100,8 +102,14 @@ export const SpeechSearchList = ({
         onChange={handleInputChange}
         enterButton="Поиск"
         onSearch={handleSearch}
+        loading={isLoading}
         suffix={
-          <Button type="text" className={cls.btnAudio} onClick={handleMicClick}>
+          <Button
+            loading={isLoading}
+            type="text"
+            className={cls.btnAudio}
+            onClick={handleMicClick}
+          >
             <AudioOutlined
               className={classNames(cls.audio, { [cls.activeMic]: listening })}
             />

@@ -1,2 +1,9 @@
 export { UsersList } from './ui/UsersList';
-export { usersReducer } from './/model/slice/usersSlice';
+export {
+  usersReducer,
+  getUsersIsLoading,
+  sentRequest,
+  acceptFriend,
+  declineFriend,
+  requestFriendToMe,
+} from './model/slice/usersSlice';

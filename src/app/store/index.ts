@@ -8,6 +8,7 @@ import { loginReducer } from '@/features/LoginModal';
 import { registerReducer } from '@/features/RegModal';
 import { ThunkExtraArg } from '@/shared/types/redux';
 import { usersReducer } from '@/features/UsersList';
+import { userCardReducer } from '@/entities/UserCard/model/slice/userCardSlice';
 
 const extraArg: ThunkExtraArg = {
   api: $axios,
@@ -20,6 +21,7 @@ export const store = configureStore({
     register: registerReducer,
     auth: authReducer,
     users: usersReducer,
+    userCard: userCardReducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({

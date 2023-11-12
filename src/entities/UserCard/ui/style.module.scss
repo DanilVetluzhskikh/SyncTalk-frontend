@@ -42,5 +42,11 @@
 }
 
 .actionBtn {
-    width: 150px;
+    width: fit-content;
+}
+
+.actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
