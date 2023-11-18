@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import { ThunkConfig } from '@/shared/types/redux';
-import { sleep } from '@/shared/utils/timeout';
+import { sleep } from '@/shared/lib/timeout/timeout';
 
 export const getFriendsService = createAsyncThunk<
   undefined,

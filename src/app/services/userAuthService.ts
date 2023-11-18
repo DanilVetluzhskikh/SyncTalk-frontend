@@ -3,7 +3,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { changeProfile, changeUser } from '../store/slices/userSlice';
 
 import { ThunkConfig } from '@/shared/types/redux';
-import { sleep } from '@/shared/utils/timeout';
+import { sleep } from '@/shared/lib/timeout/timeout';
 import { ProfileType } from '@/shared/types/user';
 
 interface GetData {

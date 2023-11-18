@@ -19,7 +19,7 @@ import {
   validateEmail,
   validateFieldsMatch,
   validateNotEmpty,
-} from '@/shared/utils/validators';
+} from '@/shared/lib/validators/validators';
 import { Errors } from '@/entities/Errors';
 import { useAppDispatch, useAppSelector } from '@/app/hooks/redux';
 

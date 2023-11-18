@@ -2,9 +2,9 @@ import { Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
 import { adminRoutes, privateRoutes, publicRoutes } from './routes/routes';
+import { renderRoutes } from './lib/routes';
 
 import { NotFound } from '@/pages';
-import { renderRoutes } from '@/shared/utils/jsx';
 
 interface RouterProps {
   isAuth: boolean;

@@ -3,7 +3,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ReturnDataUsers } from '../types/usersSchema';
 
 import { ThunkConfig } from '@/shared/types/redux';
-import { sleep } from '@/shared/utils/timeout';
+import { sleep } from '@/shared/lib/timeout/timeout';
 
 interface GetData {
   search: string;

@@ -13,7 +13,10 @@ import {
 } from '../model/slice/loginSlice';
 import { loginByEmail } from '../model/services/loginByEmail';
 
-import { validateEmail, validateNotEmpty } from '@/shared/utils/validators';
+import {
+  validateEmail,
+  validateNotEmpty,
+} from '@/shared/lib/validators/validators';
 import { Errors } from '@/entities/Errors';
 import { useAppDispatch, useAppSelector } from '@/app/hooks/redux';
 

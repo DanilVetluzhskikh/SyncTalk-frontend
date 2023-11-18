@@ -4,10 +4,11 @@
   "description": "pet project based discord idea",
   "main": "index.tsx",
   "scripts": {
-    "dev": "npx webpack serve --env port=1337 mode=development",
     "start": "webpack",
+    "dev": "npx webpack serve --env port=1337 mode=development",
     "build": "webpack --env mode=production",
-    "test:unit": "jest --config ./config/jest/jest.config.ts"
+    "test:unit": "jest --config ./config/jest/jest.config.ts",
+    "prepare": "husky install"
   },
   "keywords": [],
   "author": "Dan",
@@ -40,6 +41,7 @@
     "eslint-plugin-storybook": "^0.6.15",
     "file-loader": "^6.2.0",
     "html-webpack-plugin": "^5.5.3",
+    "husky": "^8.0.3",
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^29.7.0",
     "node-sass": "^9.0.0",

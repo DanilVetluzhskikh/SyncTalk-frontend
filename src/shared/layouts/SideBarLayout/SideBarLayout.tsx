@@ -5,7 +5,7 @@ import cls from './style.module.scss';
 
 import { SideBar } from '@/widgets/SideBar';
 import { BottomPopover } from '@/widgets/BottomPopover';
-import { stepsStart } from '@/shared/utils/jsx';
+import { stepsStart } from '@/shared/mocks/steps';
 import { STEPS_START } from '@/shared/mocks/guid';
 
 interface SideBarLayoutProps {

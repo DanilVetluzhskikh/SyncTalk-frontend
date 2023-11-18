@@ -1,24 +1,4 @@
-import { Route } from 'react-router-dom';
 import { TourProps } from 'antd';
-
-import { RoutesType } from '@/app/router/routes/routes';
-
-export const renderRoutes = (routes: RoutesType) =>
-  Object.values(routes).map(({ path, Element, Layout }) => (
-    <Route
-      key={path}
-      path={path}
-      element={
-        Layout ? (
-          <Layout>
-            <Element />
-          </Layout>
-        ) : (
-          <Element />
-        )
-      }
-    />
-  ));
 
 export const stepsStart = (
   ref1: React.MutableRefObject<HTMLDivElement>,

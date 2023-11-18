@@ -5,7 +5,7 @@ import {
   actionsFriend,
   getButtonConfig,
   selectButtonProps,
-} from '../../utils/actions';
+} from '../../lib/actions';
 
 import { useAppDispatch } from '@/app/hooks/redux';
 import { UserSubscribeAction } from '@/shared/types/shared';
