@@ -14,9 +14,9 @@ export const Errors = (props: ErrorsProps) => {
   }
 
   return (
-    <div className={cls.content}>
+    <div className={cls.content} data-testid="errors-container">
       {props.errors
-        .filter(err => err)
+        .filter(err => Boolean(err?.trim()))
         .map((item, index) => (
           <Text type="danger" key={`${item}__${index}`}>
             {item}

@@ -52,7 +52,7 @@ export const RegModal = (props: RegModalProps) => {
 
     dispatch(setRegisterErrors(newErrors));
 
-    if (!newErrors.filter(err => err).length) {
+    if (!newErrors.filter(Boolean).length) {
       const result = await dispatch(
         register({
           email,

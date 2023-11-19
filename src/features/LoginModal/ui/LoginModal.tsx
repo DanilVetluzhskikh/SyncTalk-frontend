@@ -53,7 +53,7 @@ export const LoginModal = (props: LoginModalProps) => {
 
     dispatch(setLoginErrors(newErrors));
 
-    if (!newErrors.filter(el => el).length) {
+    if (!newErrors.filter(Boolean).length) {
       const result = await dispatch(
         loginByEmail({
           email,
